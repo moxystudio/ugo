@@ -74,33 +74,34 @@ module.exports = [
     (ugo) => {
         ugo.command('build')
             .description('Builds the project')
-            .step('babel', {
-                title: 'Building with Babel',
-                options: {
+            .step('babel')
+                .title('Building with Babel')
+                .options({
                     'output-dir': { type: 'string', default: 'dist' },
                     'cache': { type: 'boolean', default: true },
-                },
-                task: (ctx, task) => ({
-                    const { argv, data } = ctx;
-
-                    return Promise.resolve();
                 })
-            })
-            .step('postcss', {
-                title: 'Building with PostCSS',
-                options: {
-                    'output-dir': { type: 'string', default: 'dist' },
-                    'cache': { type: 'boolean', default: true },
-                },
-                task: (ctx, task) => {
+                .task((ctx, task) => ({
                     const { argv, data } = ctx;
 
                     return Promise.resolve();
-                },
-            });
-
-        // You may access a command steps via `ugo.command('<name>').steps` which is a ChainedMap
+                }));
     },
+    (ugo) => {
+        ugo.command('build')
+            .step('postcss')
+                .title('Building with Babel')
+                .options({
+                    'output-dir': { type: 'string', default: 'dist' },
+                    'cache': { type: 'boolean', default: true },
+                })
+                .task((ctx, task) => ({
+                    const { argv, data } = ctx;
+
+                    return Promise.resolve();
+                }));
+    },
+
+    // You may access a command steps via `ugo.command('<name>').steps` which is a ChainedMap
 ];
 ```
 
@@ -118,17 +119,20 @@ Besides that, there's an additional `exposeAs` property which allows you to chan
 module.exports = [
     (ugo) => {
         ugo.command('build')
-            .steps
-                .tap('babel', (step) => {
-                    step.options.cache.exposeAs = 'babel-cache';
+            .step('babel')
+                .tap('options', (options) => {
+                    options.cache.exposeAs = 'babel-cache';
 
                     return step;
                 })
-                .tap('postcss', (step) => {
-                    step.options.cache.exposeAs = 'postcss-cache';
+                .end()
+            .step('postcss')
+                .tap('options', (options) => {
+                    options.cache.exposeAs = 'postcss-cache';
 
                     return step;
-                });
+                })
+                .end();
     },
 ];
 ```
@@ -160,7 +164,7 @@ module.exports = [
                 .create((options) => /* create babel config */)
                 .modify('some-mutation', (config, options) => config)
                 .modify('some-other-mutation', (config, options) => config)
-                .end()
+                .end();
             .config('postcss')
                 .create((options) => /* create postcss config */)
                 .modify('some-mutation', (config, options) => config)

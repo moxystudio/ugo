@@ -1,0 +1,58 @@
+{
+  "name": "ugo",
+  "version": "0.0.0",
+  "description": "An extensible and composable cli",
+  "keywords": [],
+  "author": "André Cruz <andre@moxy.studio>",
+  "homepage": "https://github.com/moxystudio/ugo",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:moxystudio/ugo.git"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "postinstall": "ugo run postinstall"
+  },
+  "standard-version": {
+    "scripts": {
+      "posttag": "git push --follow-tags origin master && npm publish"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "cosmiconfig": "^4.0.0",
+    "listr": "^0.13.0",
+    "lodash": "^4.17.5",
+    "update-notifier": "^2.4.0",
+    "webpack-chain": "^4.5.0",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^6.0.0",
+    "@commitlint/config-conventional": "^6.0.2",
+    "eslint": "^4.3.0",
+    "eslint-config-moxy": "^4.1.0",
+    "husky": "^0.14.3",
+    "jest": "^22.0.0",
+    "lint-staged": "^6.0.0",
+    "standard-version": "^4.2.0"
+  },
+  "bin": {
+    "ugo-run": "bin/ugo-run.js",
+    "ugo-debug": "bin/ugo-debug.js"
+  }
+}
