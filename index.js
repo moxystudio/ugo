@@ -1,9 +1,9 @@
 'use strict';
 
-const create = require('./lib/createUgo');
-const run = require('./lib/runUgo');
+const createUgo = require('./lib/createUgo');
+const runUgo = require('./lib/runUgo');
 
 module.exports = {
-    run,
-    create,
+    createUgo,
+    runUgo,
 };

@@ -11,7 +11,7 @@ module.exports = [
                 .title('Building with Babel')
                 .options({
                     'output-dir': { type: 'string', default: 'dist', description: 'foo' },
-                    cache: { type: 'boolean', default: true },
+                    cache: { type: 'string', default: true },
                 })
                 .task(({ argv, data }, task) => {
                     task.output = 'Hello';

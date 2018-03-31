@@ -6,14 +6,11 @@
 
 require('update-notifier')({ pkg: require('../package.json') }).notify();
 
-const { create, run } = require('..');
+const { createUgo, runUgo } = require('..');
 
+const ugo = createUgo();
 const args = process.argv.slice(2);
 
-create()
-.then((ugo) => run(ugo, args))
+runUgo(ugo, args)
 .then(() => process.exit())
-.catch((err) => {
-    console.error(err.stack);
-    process.exit(1);
-});
+.catch(() => process.exit(1));

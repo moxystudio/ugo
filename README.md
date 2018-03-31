@@ -222,17 +222,15 @@ By default, `ugo` adds an automatic postinstall command that:
 
 ### Node API
 
-#### ChainedMap
+```js
+const { createUgo, runUgo } = require('ugo');
+```
 
-TODO: Create a separate packaged based on webpack-chain [ChainedMap](https://github.com/mozilla-neutrino/webpack-chain/blob/master/src/ChainedMap.js) and [friends](https://github.com/mozilla-neutrino/webpack-chain/blob/master/src/ChainedSet.js).
-
-#### .run(argv, [options])
+#### .createUgo([options])
 
 TODO:
 
-One of the options must allow changing `ugo.config.js` to something else. This makes it possible to wrap a CLI with a different name.
-
-#### .create([options])
+#### .runUgo(ugo, argv, [options])
 
 TODO:
 

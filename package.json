@@ -34,9 +34,11 @@
     ]
   },
   "dependencies": {
+    "chained-config": "^0.2.1",
     "cosmiconfig": "^4.0.0",
     "listr": "^0.13.0",
     "lodash": "^4.17.5",
+    "pretty-error": "^2.1.1",
     "update-notifier": "^2.4.0",
     "webpack-chain": "^4.5.0",
     "yargs": "^11.0.0"
